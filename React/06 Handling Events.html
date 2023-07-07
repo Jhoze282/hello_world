@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>React</title>
+    <script src="https://unpkg.com/react@18/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <link rel="stylesheet" href="..\bootstrap-3.4.1-dist\css\bootstrap.min.css">
+
+</head>
+<body>
+    <div class="container" id="root"></div>
+
+    <script type="text/babel">
+
+        class Toggle extends React.Component {
+            constructor(props) {
+                super(props);
+                this.state = {
+                    isToggledOn: true
+                };
+
+                this.handleClick =  this.handleClick.bind(this);
+            }
+
+            handleClick() {
+                this.setState(prevState => ({
+                    isToggledOn: !prevState.isToggledOn
+                }));
+            }
+
+            render() {
+                let claStyle = this.state.isToggledOn ?
+                        'btn btn-success' :
+                        'btn btn-danger'
+
+                return (
+                    <button onClick={this.handleClick}
+                            className={claStyle}>
+                        {this.state.isToggledOn ? 'Encendido' : 'Apagado'}
+                    </button>
+                )
+            }
+        }
+
+        class LoginButton extends React.Component {
+            handleClick = () => {
+                console.log('this is: ', this);
+            }
+
+            render() {
+                return(
+                    <button onClick={this.handleClick}>
+                        Clic aqui
+                    </button>
+                )
+            }
+        }
+
+        function App() {
+            return(
+                <div>
+                    <Toggle />
+                    <LoginButton />
+                </div>
+            )
+        }
+
+        const root = ReactDOM.createRoot(document.getElementById('root'));
+        root.render(<App />)
+    </script>
+</body>
+</html>

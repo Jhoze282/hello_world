@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>React Getting started</title>
+
+  <script src="https://unpkg.com/react@18/umd/react.development.js"></script>
+  <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+</head>
+<body>
+  <div id="root">
+    <!-- This div's content will be managed by React. -->
+  </div>
+  <script type="text/babel">
+
+    function tick() {
+        const element = (
+            <div>
+                <h1>Hola mundo!</h1>
+                <h2>La hora es {new Date().toLocaleTimeString()}</h2>    
+            </div>
+        );
+        root.render(element);
+    }
+
+    setInterval(tick, 1000);
+
+    const container = document.getElementById("root");
+    const root = ReactDOM.createRoot(container);
+    root.render(<h1>Hola React</h1>)
+  </script>
+</body>
+</html>

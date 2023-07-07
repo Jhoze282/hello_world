@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>React Getting started</title>
+
+  <script src="https://unpkg.com/react@18/umd/react.development.js"></script>
+  <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+</head>
+<body>
+  <div id="root">
+    <!-- This div's content will be managed by React. -->
+  </div>
+  <script type="text/babel">
+
+    function formatName(user) {
+      return user.firstName + ' ' + user.lastName;
+    };
+
+    const user = {
+      firstName: 'Luis',
+      lastName: 'López'
+    };
+
+    function GetGreeting(user) {
+      if (user) {
+        return <h1>Hola, {formatName(user)}!</h1>;
+      }
+      return <h1>Hola Mundo.</h1>;
+    }
+
+    const Attributes = (
+      <div>
+        <h1>Hola Mundo</h1>
+        <a href='https://www.reactjs.org'>Link</a>
+        <p>{user.firstName + ' ' + user.lastName}</p>
+      </div>);
+
+    let objeto;
+
+    objeto = (
+      <h1 className="greeting">
+        Hola mundo
+      </h1>
+    );
+
+    objeto = React.createElement(
+      'h1',
+      {className: 'greeting'},
+      'Hola mundo!'
+    );
+
+    const element = objeto;
+
+    const container = document.getElementById("root");
+    const root = ReactDOM.createRoot(container);
+    root.render(element);
+  </script>
+</body>
+</html>

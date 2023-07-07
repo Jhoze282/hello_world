@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>React</title>
+    <script src="https://unpkg.com/react@18/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <link rel="stylesheet" href="..\bootstrap-3.4.1-dist\css\bootstrap.min.css">
+
+</head>
+<body>
+    <div class="container" id="root"></div>
+
+    <script type="text/babel">
+
+    // Paso 1 Renderizar el componente
+    
+    // function tick() {
+    //     const element = (
+    //         <div>
+    //             <h1>Hola Mundo</h1>
+    //             <h2>La hora es {new Date().toLocaleTimeString()}</h2>    
+    //         </div>
+    //     );
+    //     root.render(element);
+    // };
+
+    // Paso 2 Pasar el componente a una función
+
+    // function Clock(props) {
+    //     return (
+    //         <div>
+    //             <h1>Hola Mundo</h1>
+    //             <h2>La hora es {props.date.toLocaleTimeString()}</h2>    
+    //         </div>
+    //     );
+    // }
+
+    // function tick() {
+    //     root.render(<Clock date = {new Date()} />);
+    // }
+
+    // setInterval(tick, 1000);
+
+    // Paso 3 crear un elemento con estado
+
+    class Clock extends React.Component {
+        constructor(props) {
+            super(props);
+            this.state = {date: new Date()};
+        }
+
+        componentDidMount() {
+            this.timerID = setInterval(
+                () => this.tick(),
+                1000
+            );
+        }
+
+        componentWillUnmount() {
+            clearInterval(this.timerID)
+        }
+
+        tick() {
+            this.setState({
+                date: new Date()
+            });
+        }
+
+        render() {
+            return(
+                <div className="well">
+                    <h1>Hola Mundo</h1>
+                    <FormattedDate date={this.state.date}/>
+                </div>
+            )
+        }
+    }
+
+    // Paso 4 El flujo de la data va hacia abajo
+
+    function FormattedDate(props) {
+        return <h2>La hora es {props.date.toLocaleTimeString()}</h2>  
+
+    }
+
+    function App() {
+        return(
+            <div>
+                <Clock />
+                <Clock />
+                <Clock />
+            </div>
+        )
+    }
+    
+    const root = ReactDOM.createRoot(document.getElementById('root'));
+    root.render(<App />);
+    </script>
+</body>
+</html>
